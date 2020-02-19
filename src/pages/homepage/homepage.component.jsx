@@ -4,11 +4,11 @@ import Directory from '../../components/directory/directory.component';
 
 
 
-const Homepage = () => (
-  <div className="homepage">
+const HomePage = () => (
+  <div className="HomePage">
 <Directory/>
   </div> 
 )
 
 
-export default Homepage;
+export default HomePage;
