@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {ReactComponent as Logo}  from '../../assets/kudix.svg'
+import {ReactComponent as Logo}  from '../../assets/kudix.svg';
 
 import "./header.styles.scss";
 
@@ -12,6 +12,7 @@ const Header = () => (
     <div className = 'options'>
         <Link className = 'option' to = '/shop'>SHOP</Link>
         <Link className = 'option' to = '/shop'>CONTACT</Link>
+        <Link className = 'option' to = '/sign-in'>SIGN IN</Link>
     </div>
   </div>
 );
