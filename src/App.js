@@ -33,6 +33,9 @@ class App extends Component {
               ...snapShot.data()
             }
           });
+
+
+    console.log(this.state);
         });
        
       }
@@ -47,7 +50,6 @@ class App extends Component {
 
   render() {
 
-    
     return (
       <div>
         <Header currentUser={this.state.currentUser} />
