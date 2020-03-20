@@ -39,7 +39,8 @@ class SignUp extends Component {
         confirmPassword: ""
       });
     } catch (error) {
-      console.log("Error in application", error);
+      alert(error.message);
+     
     }
   };
 
@@ -94,6 +95,7 @@ this.setState({[name]: value});
             label="Confirm Password"
             required
           />
+        
           <CustomButton type="submit">SIGN UP</CustomButton>
         </form>
       </div>
