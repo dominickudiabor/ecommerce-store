@@ -3,7 +3,7 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const config = {
-  apiKey:process.env.REACT_APP_FIREBASE_API_KEY ,
+  apiKey:'AIzaSyCAoiwzhjC7vzRxCM3lPkmoiudnJveZaQgS' ,
   authDomain: "kudix-db.firebaseapp.com",
   databaseURL: "https://kudix-db.firebaseio.com",
   projectId: "kudix-db",
