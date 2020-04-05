@@ -3,7 +3,7 @@ import  'firebase/firestore';
 
 const firestore = firebase.firestore();
 
-/* the tree ways to query from the firebase database */
+/* the three ways to query from the firebase database */
 
 firestore.collection('users')
 .doc('wwaEFVINsFhRxREBPe49')
