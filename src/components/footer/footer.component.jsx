@@ -1,11 +1,9 @@
-import React from 'react';
-import './footer.styles.scss';
+import React from "react";
+import { FooterContainer } from "./footer.styles";
 
 const date = new Date().getFullYear();
-const  Footer = () => (
-    <div className = 'footer'>
-{`@${date} Dominic Travis Kudiabor`}
-    </div>
-)
+const Footer = () => (
+  <FooterContainer>{`@${date} Dominic Travis Kudiabor`}</FooterContainer>
+);
 
 export default Footer;
