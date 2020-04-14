@@ -3,14 +3,14 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const config = {
-  apiKey:process.env.REACT_APP_FIREBASE_API_KEY ,
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "kudix-db.firebaseapp.com",
   databaseURL: "https://kudix-db.firebaseio.com",
   projectId: "kudix-db",
   storageBucket: "kudix-db.appspot.com",
   messagingSenderId: "939275238628",
   appId: "1:939275238628:web:4688075ab6db98514e00f1",
-  measurementId: "G-SMXJR6CZWR"
+  measurementId: "G-SMXJR6CZWR",
 };
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
@@ -29,7 +29,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         displayName,
         email,
         createdAt,
-        ...additionalData
+        ...additionalData,
       });
     } catch (error) {
       console.log("error  creating user", error.message);
@@ -37,6 +37,21 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
 
   return userRef;
+};
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+  objectsToAdd.forEach((obj) => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+
+  return await batch.commit();
 };
 
 firebase.initializeApp(config);
