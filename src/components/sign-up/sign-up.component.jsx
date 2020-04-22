@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
-import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
+import { signUpStart } from "../../redux/user/user.actions";
 
-import {SignUpContainer,SignUpTitle} from  "./sign-up.styles";
+import { connect } from "react-redux";
+
+import { SignUpContainer, SignUpTitle } from "./sign-up.styles";
 
 class SignUp extends Component {
   constructor() {
@@ -13,46 +15,29 @@ class SignUp extends Component {
       displayName: "",
       email: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
     };
   }
 
-  handleSubmit = async event => {
+  handleSubmit = async (event) => {
     event.preventDefault();
+    const { signUpStart } = this.props;
     const { displayName, email, password, confirmPassword } = this.state;
+
     if (password !== confirmPassword) {
       alert("passwords don't match");
       return;
     }
 
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-
-      await createUserProfileDocument(user, { displayName });
-      this.setState({
-        displayName: "",
-        email: "",
-        password: "",
-        confirmPassword: ""
-      });
-    } catch (error) {
-      alert(error.message);
-     
-    }
+    signUpStart({displayName, email, password});
   };
 
-
   handleChange = (event) => {
-const {name,value} = event.target;
-this.setState({[name]: value});
-
-  }
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
 
   render() {
- 
     const { displayName, email, password, confirmPassword } = this.state;
 
     return (
@@ -95,12 +80,21 @@ this.setState({[name]: value});
             label="Confirm Password"
             required
           />
-        
-          <CustomButton type="submit">SIGN UP</CustomButton>
+
+          <CustomButton type="submit" >
+            SIGN UP
+          </CustomButton>
         </form>
       </SignUpContainer>
     );
   }
 }
 
-export default SignUp;
+const mapDispatchToProps = dispatch => ({
+  signUpStart: userCredentials => dispatch(signUpStart(userCredentials))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SignUp);
